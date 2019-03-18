@@ -17,6 +17,20 @@
     height: 50%;
 }
 
+.table-field{
+    color: #000000;
+    background-color: #80b8ba;
+    border-style: solid;
+    border-color: #ccc;
+    line-height: 200px;
+    text-align: center;
+    height:150px;
+    width: 96%;
+    margin:0 auto;
+    overflow-x: auto;
+}
+
+
 .navbar-custom .nav-link.disabled{
     color: grey;
     background-color: transparent !important;
