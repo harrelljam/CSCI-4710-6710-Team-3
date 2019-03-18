@@ -8,7 +8,7 @@
 }
 
 .drag-drop-field{
-    color: #ccc;
+    color: #000000;
     background-color: #edeaa3;
     border-style: dashed;
     border-color: #ccc;
@@ -30,7 +30,22 @@
     display: inline-block;
     border-radius: 4px;
     background-color: #edeaa3;
-    color: #FFFFFF;
+    color: #000000;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    width: 99%;
+    height: 130px;
+}
+
+.input-button-disabled{
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #dddddd;
+    color: #000000;
     text-align: center;
     font-size: 28px;
     padding: 20px;
@@ -48,6 +63,8 @@
     transition: 0.5s;
 }
 
+
+
 .input-button span:after {
     content: '\00bb';
     position: absolute;
@@ -57,10 +74,13 @@
     transition: 0.5s;
 }
 
+
+
 .input-button:hover  {
     background-color: #1d5422;
     padding-right: 25px;
 }
+
 
 .input-button:hover span {
     padding-right: 25px;

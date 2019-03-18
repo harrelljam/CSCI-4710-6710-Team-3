@@ -21,6 +21,10 @@
         function toggleTable(){
             document.getElementById("fileTable").style.display="table";
             document.getElementById("uploadText").style.display="none";
+            document.getElementById("proceed").className="input-button";
+            document.getElementById("proceed").disabled=false;
+
+
         }
     </script>
 </head>
@@ -38,7 +42,7 @@
     </nav>
     <div class="container">
 
-        <form id="upload" action="index.html" method="POST" enctype="multipart/form-data">
+        <form id="upload" action="verify.html" method="POST" enctype="multipart/form-data">
         <div class="row">
             <div class="card">
                 <div class="card-body">
@@ -62,7 +66,10 @@
                              </thead>
                              <tbody id="files"></tbody>
                          </table>
-                         <SPAN id="uploadText">Just drag and drop files here</SPAN>
+                         <SPAN id="uploadText">
+                             <img width="10%" src="img/file_upload.png">
+                             Just drag and drop files here
+                         </SPAN>
                     </div>
                  </div>
              </div>
@@ -83,7 +90,7 @@
                             </button>
                         </td>
                         <td width="50%">
-                            <button type="button" class="input-button" name="proceed">
+                            <button type="submit" class="input-button-disabled" name="proceed" id="proceed" disabled>
                                 <span>CONTINUE</span>
                             </button>
                         </td>

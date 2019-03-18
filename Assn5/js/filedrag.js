@@ -19,6 +19,9 @@
 	// file selection
 	function FileSelectHandler(e) {
 
+		// cancel event and hover styling
+		FileDragHover(e);
+
 		// fetch FileList object
 		var files = e.target.files || e.dataTransfer.files;
 
