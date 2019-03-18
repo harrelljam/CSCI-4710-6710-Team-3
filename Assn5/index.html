@@ -18,6 +18,10 @@
             $('#modalUpload').modal('show');
 
         }
+        function toggleTable(){
+            document.getElementById("fileTable").style.display="table";
+            document.getElementById("uploadText").style.display="none";
+        }
     </script>
 </head>
 <body>
@@ -41,7 +45,24 @@
                     <!-- Drop Zone -->
                      <div ondragover="allowDrop(event)" ondrop="ShowUpload(event);" class="drag-drop-field"
                           id="dropzone">
-                        Just drag and drop files here
+                         <table class="table table-bordered" id="fileTable" width="100%"
+                                style="background:#FFFFFF; display:none;" height="25%">
+                           <thead width="100%">
+                             <tr width="100%">
+                                 <th>
+                                     FILE NAME
+                                 </th>
+                                 <th>
+                                     FILE TYPE
+                                 </th>
+                                 <th>
+                                     FILE SIZE
+                                 </th>
+                             </tr>
+                             </thead>
+                             <tbody id="files"></tbody>
+                         </table>
+                         <SPAN id="uploadText">Just drag and drop files here</SPAN>
                     </div>
                  </div>
              </div>
@@ -49,7 +70,7 @@
         <div class="row">
             <br>
             <form>
-                <input type="file" style="display:none;" id="file">
+                <input type="file" oninput="ShowUpload(event);" style="display:none;" id="file" >
                 <table width="100%">
                     <tr>
                         <td width="50%">
@@ -72,21 +93,19 @@
         </div>
     </form>
     </div> <!-- /container -->
-    <div class="modal fade" id="modalUpload" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <!-- This means this is a bootstrap modal -->
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="modalUpload" tabindex="-1" role="dialog" aria-labelledby="modelUploadTitle"
+         aria-hidden="true">
+         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Loading...</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <!-- ARIA (Accessible Rich Internet Applications) defines a way to make Web content and Web applications more accessible to people with disabilities. -->
-                        <!-- The aria-hidden property tells screen-readers if they should ignore the element. -->
+                    <h5 class="modal-title" id="modalTitle">Loading...</h5>
+                    <button type="button" class="close" onclick="toggleTable();"  data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-3 col-sm-6  ">
+
                             <div class="progress blue">
                     <span class="progress-left">
                         <span class="progress-bar"></span>
@@ -96,12 +115,11 @@
                     </span>
                                 <div class="progress-value">100%</div>
                             </div>
-                        </div>
+
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Do Something</button>
+                    <button type="button" class="btn btn-secondary" onclick="toggleTable();" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

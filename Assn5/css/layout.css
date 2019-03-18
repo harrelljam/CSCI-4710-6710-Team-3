@@ -13,7 +13,8 @@
     border-style: dashed;
     border-color: #ccc;
     line-height: 200px;
-    text-align: center
+    text-align: center;
+    height: 50%;
 }
 
 .navbar-custom .nav-link.disabled{

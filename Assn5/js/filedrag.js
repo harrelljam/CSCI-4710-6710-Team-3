@@ -19,38 +19,29 @@
 	// file selection
 	function FileSelectHandler(e) {
 
-		// cancel event and hover styling
-		FileDragHover(e);
-
 		// fetch FileList object
 		var files = e.target.files || e.dataTransfer.files;
 
 		// process all File objects
+		var k="";
 		for (var i = 0, f; f = files[i]; i++) {
-			ParseFile(f);
+			k+= '<tr width="100%">';
+			k+= '<td><strong>' + f.name +'</strong></td>';
+			k+= '<td><strong>' + f.type +'</strong></td>';
+			k+= '<td><strong>' + f.size +'</strong></td>';
+			k+= '</tr>';
+
 		}
 
-	}
-
-
-	// output file information
-	function ParseFile(file) {
-
-		Output(
-			"<p>File information: <strong>" + file.name +
-			"</strong> type: <strong>" + file.type +
-			"</strong> size: <strong>" + file.size +
-			"</strong> bytes</p>"
-		);
+		document.getElementById('files').innerHTML = k;
 
 	}
-
 
 	// initialize
 	function Init() {
 
 		var filedrag = document.getElementById("dropzone");
-
+		var file = document.getElementById("file");
 
 		// is XHR2 available?
 		var xhr = new XMLHttpRequest();
@@ -61,6 +52,7 @@
 			filedrag.addEventListener("dragleave", FileDragHover, false);
 			filedrag.addEventListener("drop", FileSelectHandler, false);
 			filedrag.style.display = "block";
+			file.addEventListener("change", FileSelectHandler, false);
 
 
 		}
