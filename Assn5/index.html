@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+    <meta charset="UTF-8">
+    <title>HYDROQUALITY</title>
+
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+        }
+        function ShowUpload(){
+            $('#modalUpload').modal('show');
+
+        }
+        function toggleTable(){
+            document.getElementById("fileTable").style.display="table";
+            document.getElementById("uploadText").style.display="none";
+            document.getElementById("proceed").className="input-button";
+            document.getElementById("proceed").disabled=false;
+
+
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-custom">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a class="nav-link active" href="index.html">UPLOAD</a></li>
+                <li><a class = "nav-link disabled" href="#">VERIFY</a></li>
+                <li><a class = "nav-link disabled" href="#">CONFIGURE</a></li>
+                <li><a class = "nav-link disabled" href="#">RUN TESTS</a></li>
+                <li><a class = "nav-link disabled" href="#">REVIEW</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+
+        <form id="upload" action="verify.html" method="POST" enctype="multipart/form-data">
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Drop Zone -->
+                     <div ondragover="allowDrop(event)" ondrop="ShowUpload(event);" class="drag-drop-field"
+                          id="dropzone">
+                         <table class="table table-bordered" id="fileTable" width="100%"
+                                style="background:#FFFFFF; display:none;" height="25%">
+                           <thead width="100%">
+                             <tr width="100%">
+                                 <th>
+                                     FILE NAME
+                                 </th>
+                                 <th>
+                                     FILE TYPE
+                                 </th>
+                                 <th>
+                                     FILE SIZE
+                                 </th>
+                             </tr>
+                             </thead>
+                             <tbody id="files"></tbody>
+                         </table>
+                         <SPAN id="uploadText">
+                             <img width="10%" src="img/file_upload.png">
+                             Just drag and drop files here
+                         </SPAN>
+                    </div>
+                 </div>
+             </div>
+        </div>
+        <div class="row">
+            <br>
+            <form>
+                <input type="file" oninput="ShowUpload(event);" style="display:none;" id="file" >
+                <table width="100%">
+                    <tr>
+                        <td width="50%">
+                            <button type="button" class="input-button" name="file"
+                                    onclick="document.getElementById('file').click();">
+                                <span>
+                                    <img width="10%" src="img/folder.png">
+                                    SELECT A .CSV FILE
+                                </span>
+                            </button>
+                        </td>
+                        <td width="50%">
+                            <button type="submit" class="input-button-disabled" name="proceed" id="proceed" disabled>
+                                <span>CONTINUE</span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </form>
+    </div> <!-- /container -->
+    <div class="modal fade" id="modalUpload" tabindex="-1" role="dialog" aria-labelledby="modelUploadTitle"
+         aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Loading...</h5>
+                    <button type="button" class="close" onclick="toggleTable();"  data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                            <div class="progress blue">
+                    <span class="progress-left">
+                        <span class="progress-bar"></span>
+                    </span>
+                                <span class="progress-right">
+                        <span class="progress-bar"></span>
+                    </span>
+                                <div class="progress-value">100%</div>
+                            </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="toggleTable();" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/filedrag.js"></script>
+</body>
