@@ -5,26 +5,9 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="css/layout1.css" />
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
     <meta charset="UTF-8">
     <title>HYDROQUALITY</title>
-
-<script>
-function move() {
-  var elem = document.getElementById("myBar");   
-  var width = 1;
-  var id = setInterval(frame, 10);
-  function frame() {
-    if (width >= 100) {
-      clearInterval(id);
-    } else {
-      width++; 
-      elem.style.width = width + '%'; 
-    }
-  }
-}
-</script>
-
 </head>
 <body>
     <nav class="navbar navbar-custom">
@@ -32,19 +15,24 @@ function move() {
             <ul class="nav navbar-nav">
                 <li><a class="nav-link disabled" href="index.html">UPLOAD</a></li>
                 <li><a class = "nav-link disabled" href="verify.html">VERIFY</a></li>
-                <li><a class = "nav-link disabled" href="configure.html">CONFIGURE</a></li>
-                <li><a class = "nav-link active" href="runtests.html">RUN TESTS</a></li>
+                <li><a class = "nav-link active" href="configure.html">CONFIGURE</a></li>
+                <li><a class = "nav-link disabled" href="runtests.html">RUN TESTS</a></li>
                 <li><a class = "nav-link disabled" href="#">REVIEW</a></li>
             </ul>
         </div>
     </nav>
-    
-<div id="myProgress">
-  <div id="myBar"></div>
-</div>
-
-<br>
-<button class="button button3" onclick="move()" >Run Tests</button> 
-
-    
+    <div class="card">
+        <div class="row">
+            <div class="col col-2" id="data-fields">
+                <span class="card-header">Data Fields</span>
+            </div>
+            <div class="col col-3" id="field-info">
+                <span class="card-header">Data Field Information</span>
+            </div>
+            <div class="col col-6" id="qc-tests">
+                <span class="card-header">QC Tests</span>
+            </div>
+        </div>
+    </div>
 </body>
+</html>
