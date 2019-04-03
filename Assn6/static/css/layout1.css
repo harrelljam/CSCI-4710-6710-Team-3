@@ -1,0 +1,131 @@
+.navbar-custom {
+    background-color: #80b8ba;
+}
+
+.navbar-custom .nav-link.active {
+    color: #ffffff;
+    background-color: #1d5422;
+}
+
+
+
+.navbar-custom .nav-link.disabled{
+    color: grey;
+    background-color: transparent !important;
+}
+
+
+.input-button{
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #edeaa3;
+    color: #000000;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    width: 99%;
+    height: 130px;
+}
+
+.input-button-disabled{
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #dddddd;
+    color: #000000;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    width: 99%;
+    height: 130px;
+}
+
+.input-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+
+
+.input-button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+
+
+.input-button:hover  {
+    background-color: #1d5422;
+    padding-right: 25px;
+}
+
+
+.input-button:hover span {
+    padding-right: 25px;
+}
+
+.input-button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px;
+  cursor: pointer;
+  width: 250px;
+  margin-left: 40%;
+  margin-right: 40%;
+  }
+  body {
+	color: #333;
+}
+
+
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}ground-color: #4CAF50;
+}
+
+body { background-color: #fafafa; font-family: ' Open Sans'; }

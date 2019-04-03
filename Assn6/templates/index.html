@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<!-- this css file is from online source, author is Matias Meno -->
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <!-- this is the library we used for this example -->
+    <script src="/static/js/dropzone.js"></script>
+    <script src="/static/js/index.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/layout.css" />
+    <meta charset="UTF-8">
+    <title>HYDROQUALITY</title>
+
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+        }
+        function ShowUpload(){
+            $('#modalUpload').modal('show');
+
+        }
+        function toggleTable(){
+            document.getElementById("fileTable").style.display="table";
+            document.getElementById("uploadText").style.display="none";
+            document.getElementById("proceed").className="input-button";
+            document.getElementById("proceed").disabled=false;
+
+
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-custom">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a class="nav-link active" href="#">UPLOAD</a></li>
+                <li><a class = "nav-link disabled" href="#">VERIFY</a></li>
+                <li><a class = "nav-link disabled" href="#">CONFIGURE</a></li>
+                <li><a class = "nav-link disabled" href="#">RUN TESTS</a></li>
+                <li><a class = "nav-link disabled" href="#">REVIEW</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+
+        <form id="upload" action="/api/post_csv" method="POST" class="dropzone">
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Drop Zone -->
+                     <div class="dz-default dz-message" id="dropzone">
+                          <SPAN id="uploadText">
+                             <img width="10%" src="/static/img/file_upload.png">
+                             Just drag and drop files here
+                         </SPAN>
+                    </div>
+                 </div>
+             </div>
+        </div>
+    </form>
+        <div class="row">
+            <br>
+            <form action="/verify" method="POST">
+                <table width="100%">
+                    <tr>
+                        <td width="50%">
+                        </td>
+                        <td width="50%">
+                            <button type="submit" class="input-button-disabled" action="/verify" method="POST" name="proceed" id="proceed" disabled>
+                                <span>CONTINUE</span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+    </div> <!-- /container -->
+    <div class="modal fade" id="modalUpload" tabindex="-1" role="dialog" aria-labelledby="modelUploadTitle"
+         aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Loading...</h5>
+                    <button type="button" class="close" onclick="toggleTable();"  data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                            <div class="progress blue">
+                    <span class="progress-left">
+                        <span class="progress-bar"></span>
+                    </span>
+                                <span class="progress-right">
+                        <span class="progress-bar"></span>
+                    </span>
+                                <div class="progress-value">100%</div>
+                            </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="toggleTable();" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/filedrag.js"></script>
+</body>

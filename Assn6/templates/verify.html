@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script
+            type="text/javascript"
+            src="//code.jquery.com/jquery-1.9.1.js"
+
+    ></script>
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+    <meta charset="UTF-8">
+    <title>HYDROQUALITY</title>
+    <script>
+        $(window).load(function(){
+
+            $('#arrRight').click(function () {
+                $('#sourceList option:selected').remove().appendTo('#targetList');
+                var $options = $("#sourceList > option").clone();
+                $('#selectSourceList').children('option:not(:first)').remove();
+                $('#selectSourceList').append($options);
+                return false;
+                });
+            $('#arrLeft').click(function () {
+                $('#targetList option:selected').remove().appendTo('#sourceList');
+                var $options = $("#sourceList > option").clone();
+                $('#selectSourceList').children('option:not(:first)').remove();
+                $('#selectSourceList').append($options);
+                return false;
+            });
+            $('#selectSourceList').click(function () {
+                $('#proceed').className='input-button';
+                $('#proceed').disabled=false;
+                return false;
+            });
+
+        });
+
+        function taggleButton(){
+            document.getElementById("proceed").className="input-button";
+            document.getElementById("proceed").disabled=false;
+        }
+    </script>
+ </head>
+<body>
+<nav class="navbar navbar-custom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a class="nav-link disabled" href="#">UPLOAD</a></li>
+            <li><a class = "nav-link active" href="#">VERIFY</a></li>
+            <li><a class = "nav-link disabled" href="#">CONFIGURE</a></li>
+            <li><a class = "nav-link disabled" href="#">RUN TESTS</a></li>
+            <li><a class = "nav-link disabled" href="#">REVIEW</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+
+    <form id="upload" action="runtests.html" method="POST" enctype="multipart/form-data">
+        <div class="row">
+            <div class="card">
+                <div class="card-body" style="background-color: #80b8ba;">
+                    <Strong>Uploaded data:</Strong>
+                    <div  class="table-field" id="tablefield">
+                        <table class="table table-bordered" id="menuTable" width="90%"
+                               style="background:#FFFFFF; margin:0 auto;" >
+                            <thead width="100%">
+                            <tr width="100%">
+                                <th>
+                                    DataValue
+                                </th>
+                                <th>
+                                    LocalDateTime
+                                </th>
+                                <th>
+                                    UTCOffset
+                                </th>
+                                <th>
+                                    DateTimeUTC
+                                </th>
+                                <th>
+                                    SiteCode
+                                </th>
+                                <th>
+                                    VariableCode
+                                </th>
+                                <th>
+                                    MethodCode
+                                </th>
+                                <th>
+                                    SourceCode
+                                </th>
+                                <th>
+                                    QualityControlLevel
+                                </th>
+                                <th>
+                                    AnotherField
+                                </th>
+
+                            </tr>
+                            </thead>
+                            <tbody id="files">
+                                <tr width="100%">
+                                <td>
+                                   0
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                                <td>
+                                    0
+                                </td>
+                            </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                    <td>
+                                        0
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <br>
+        </div>
+        <div class="row">
+            <div class="col-md-9" style="background-color: #80b8ba;">
+                <table width="100%">
+                    <tr>
+                        <td class="col-md-4">
+                            <div>
+                                <strong>Detected Column Names:</strong>
+                            </div>
+                            <div>
+                             <select class="selectpicker form-control" size="15" width="100%" id="sourceList" multiple>
+                                <option>DataValue</option>
+                                <option>LocalDateTime</option>
+                                <option>UTCOffset</option>
+                                <option>DateTimeUTC</option>
+                                <option>SiteCode</option>
+                                <option>VariableCode</option>
+                                <option>MethodCode</option>
+                                <option>SourceCode</option>
+                                <option>QualityControlLevel</option>
+                                <option>AnotherField</option>
+                             </select>
+                            </div>
+
+                        </td>
+
+                        <td class="col-md-2" align="center">
+                            <div>
+                                <button type="button" id="arrRight" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" id="arrLeft" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                </button>
+                            </div>
+
+                        </td>
+                        <td class="col-md-4">
+                            <div>
+                                <strong>Data Columns:</strong>
+                            </div>
+                            <div>
+                                <select class="selectpicker form-control" size="15" id="targetList" multiple>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-2" style="background-color: #80b8ba;">
+                <div>
+                    <strong>Select DateTimeColumn:</strong>
+                </div>
+                <div>
+                    <select class="selectpicker form-control" size="10" id="selectSourceList"
+                            onclick="taggleButton()" multiple>
+                    </select>
+                </div>
+                <div>
+                    <form>
+                        <button type="submit" class="input-button-disabled" name="proceed"
+                                style="height: 90px;" id="proceed" disabled>
+                            <SPAN>
+                            Continue
+                            </SPAN>
+                            </button>
+                     </form>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
