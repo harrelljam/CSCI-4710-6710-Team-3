@@ -25,6 +25,15 @@ def verify():
 			column_names, data_part = util.preview_csv(app.config['UPLOAD_FOLDER']+filename)
 			return render_template('verify.html',column_names=column_names, data_part=data_part)
 
+@app.route("/configure", methods=['GET','POST'])
+def configure():
+	if 'filename' not in session:
+		log = 'no file field in request.'
+		return render_template('fail.html', log=log)
+	else:
+		filename = secure_filename(session.get('filename', None))
+		column_names, data_part = util.preview_csv(app.config['UPLOAD_FOLDER'] + filename)
+		return render_template('configure.html', column_names=column_names)
 
 @app.route('/api/post_csv', methods=['POST'])
 def post_csv():

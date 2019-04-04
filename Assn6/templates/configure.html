@@ -4,35 +4,81 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="../css/layout.css" />
+    <script
+        type="text/javascript"
+        src="//code.jquery.com/jquery-1.9.1.js"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/layout.css" />
     <meta charset="UTF-8">
     <title>HYDROQUALITY</title>
+    <script>
+        $(window).load(function(){
+
+        })
+    </script>
 </head>
 <body>
     <nav class="navbar navbar-custom">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
-                <li><a class="nav-link disabled" href="../index.html">UPLOAD</a></li>
-                <li><a class = "nav-link disabled" href="../verify.html">VERIFY</a></li>
-                <li><a class = "nav-link active" href="configure.html">CONFIGURE</a></li>
-                <li><a class = "nav-link disabled" href="../runtests.html">RUN TESTS</a></li>
+                <li><a class="nav-link disabled" href="/">UPLOAD</a></li>
+                <li><a class = "nav-link disabled" href="/verify">VERIFY</a></li>
+                <li><a class = "nav-link active" href="#">CONFIGURE</a></li>
+                <li><a class = "nav-link disabled" href="#">RUN TESTS</a></li>
                 <li><a class = "nav-link disabled" href="#">REVIEW</a></li>
             </ul>
         </div>
     </nav>
-    <div class="card">
-        <div class="row">
-            <div class="col col-2" id="data-fields">
-                <span class="card-header">Data Fields</span>
+    <div class="container">
+        <form id="configure" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-9" style="background-color: #80b8ba; padding: 20px;">
+                    <table width="100%">
+                        <tr>
+                            <td class="col-md-3">
+                                <div>
+                                    <strong>Data Columns:</strong>
+                                </div>
+                                <div>
+                                    <select class="selectpicker form-control" size="15" id="targetList" multiple>
+                                        {% for column in column_names %}
+                                            <span>{{ column }}</span>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </td>
+                            <td class="col-md-3">
+                                <!--blank space-->
+                            </td>
+                            <td class="col-md-3">
+                                <div>
+                                    <strong>Tests:</strong>
+                                </div>
+                                <div>
+                                    <select class="testpicker form-control" size="15" id="testList" multiple>
+
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-2" style="background-color: #80b8ba;">
+                    <div>
+                        <form>
+                            <button type="submit" class="input-button-disabled col col-2-sm" name="proceed"
+                                style="height: 90px;" id="proceed" disabled>
+                                <span>
+                                    Continue
+                                </span>
+                            </button>
+                         </form>
+                    </div>
+                </div>
             </div>
-            <div class="col col-3" id="field-info">
-                <span class="card-header">Data Field Information</span>
-            </div>
-            <div class="col col-6" id="qc-tests">
-                <span class="card-header">QC Tests</span>
-            </div>
-        </div>
+        </form>
     </div>
 </body>
 </html>
