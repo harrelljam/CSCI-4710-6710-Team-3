@@ -86,6 +86,37 @@ def post_csv():
     # return False
     return render_template('index.html', log=log)
 
+@app.route("/api/runtests",methods=['POST'])
+def test():
+    demotest = [
+        {
+            'x':1,
+            'y':10,
+            'pass':True
+        },
+        {
+            'x':2,
+            'y':10,
+            'pass':True
+        },
+        {
+            'x':3,
+            'y':5,
+            'pass':True
+        },
+        {
+            'x':4,
+            'y':2,
+            'pass':False
+        },
+        {
+            'x':5,
+            'y':1,
+            'pass':False
+        },
+    ]
+    session['testres'] = demotest
+    return render_template('runtests.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -28,9 +28,7 @@
       }
     }*/
     $(window).load(function(){
-        function runtests() {
-            $("#proceed").style.display = "block";
-        }
+
     })
 </script>
 
@@ -52,8 +50,8 @@
   <div id="myBar"></div>
 </div-->
     <div class="container">
-        <button on-click="runtests()">Run Tests</button>
-        <form action="/review" id="proceed" style="display:block"><button type="submit">CONTINUE</button></form>
+        <form action="/api/runtests" method="POST" id="runtests"><button type="submit">Run Tests</button></form>
+        <form action="/review" method="POST" id="proceed" style="display:block"><button type="submit">CONTINUE</button></form>
     </div>
     
 </body>
