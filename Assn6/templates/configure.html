@@ -30,27 +30,27 @@
         </div>
     </nav>
     <div class="container">
-        <form id="configure" method="POST" enctype="multipart/form-data">
+        <form id="configure" action="runtests" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-9" style="background-color: #80b8ba; padding: 20px;">
                     <table width="100%">
                         <tr>
-                            <td class="col-md-3">
+                            <td class="col-md-4">
                                 <div>
                                     <strong>Data Columns:</strong>
                                 </div>
                                 <div>
                                     <select class="selectpicker form-control" size="15" id="targetList" multiple>
-                                        {% for column in column_names %}
-                                            <span>{{ column }}</span>
+                                        {% for column in selected_columns %}
+                                            <option>{{ column }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
                             </td>
-                            <td class="col-md-3">
+                            <td class="col-md-1">
                                 <!--blank space-->
                             </td>
-                            <td class="col-md-3">
+                            <td class="col-md-4">
                                 <div>
                                     <strong>Tests:</strong>
                                 </div>
@@ -68,8 +68,8 @@
                 <div class="col-md-2" style="background-color: #80b8ba;">
                     <div>
                         <form>
-                            <button type="submit" class="input-button-disabled col col-2-sm" name="proceed"
-                                style="height: 90px;" id="proceed" disabled>
+                            <button type="submit" class="input-button col col-2-sm" name="proceed"
+                                style="height: 90px;" id="proceed">
                                 <span>
                                     Continue
                                 </span>
