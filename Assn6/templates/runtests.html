@@ -4,25 +4,32 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="css/layout1.css" />
+    <script
+        type="text/javascript"
+        src="//code.jquery.com/jquery-1.9.1.js"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/layout.css" />
     <meta charset="UTF-8">
     <title>HYDROQUALITY</title>
 
 <script>
-function move() {
-  var elem = document.getElementById("myBar");   
-  var width = 1;
-  var id = setInterval(frame, 10);
-  function frame() {
-    if (width >= 100) {
-      clearInterval(id);
-    } else {
-      width++; 
-      elem.style.width = width + '%'; 
+    //Professor removed this requirement
+    /*function move() {
+      var elem = document.getElementById("myBar");
+      var width = 1;
+      var id = setInterval(frame, 10);
+      function frame() {
+        if (width >= 100) {
+          clearInterval(id);
+        } else {
+          width++;
+          elem.style.width = width + '%';
+        }
+      }
+    }*/
+    function runtests() {
+        $("#proceed").style.display = "block";
     }
-  }
-}
 </script>
 
 </head>
@@ -30,21 +37,21 @@ function move() {
     <nav class="navbar navbar-custom">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
-                <li><a class="nav-link disabled" href="index.html">UPLOAD</a></li>
-                <li><a class = "nav-link disabled" href="verify.html">VERIFY</a></li>
-                <li><a class = "nav-link disabled" href="templates/configure.html">CONFIGURE</a></li>
-                <li><a class = "nav-link active" href="runtests.html">RUN TESTS</a></li>
+                <li><a class="nav-link disabled" href="/">UPLOAD</a></li>
+                <li><a class = "nav-link disabled" href="/verify">VERIFY</a></li>
+                <li><a class = "nav-link disabled" href="/configure">CONFIGURE</a></li>
+                <li><a class = "nav-link active" href="#">RUN TESTS</a></li>
                 <li><a class = "nav-link disabled" href="#">REVIEW</a></li>
             </ul>
         </div>
     </nav>
     
-<div id="myProgress">
+<!--div id="myProgress">
   <div id="myBar"></div>
-</div>
-
-<br>
-<button class="button button3" onclick="move()" >Run Tests</button> 
-
+</div-->
+    <div class="container">
+        <button on-click="runtests()">Run Tests</button>
+        <a href="/review" id="proceed" style="display:block"><button type="submit">CONTINUE</button></a>
+    </div>
     
 </body>
