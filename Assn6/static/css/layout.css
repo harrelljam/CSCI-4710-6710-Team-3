@@ -30,6 +30,9 @@
     overflow-x: auto;
 }
 
+.container {
+    background-color: #80b8ba;
+}
 
 .navbar-custom .nav-link.disabled{
     color: grey;
