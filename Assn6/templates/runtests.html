@@ -27,9 +27,11 @@
         }
       }
     }*/
-    function runtests() {
-        $("#proceed").style.display = "block";
-    }
+    $(window).load(function(){
+        function runtests() {
+            $("#proceed").style.display = "block";
+        }
+    })
 </script>
 
 </head>
@@ -51,7 +53,7 @@
 </div-->
     <div class="container">
         <button on-click="runtests()">Run Tests</button>
-        <a href="/review" id="proceed" style="display:block"><button type="submit">CONTINUE</button></a>
+        <form action="/review" id="proceed" style="display:block"><button type="submit">CONTINUE</button></form>
     </div>
     
 </body>
