@@ -4,25 +4,104 @@
 		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script>
+			function ShowURegistration() {
+				$('#modalRegister').modal('show');
+			}
+			function RegisterUser()
+			{
+
+			}
+		</script>
 		<title>
 			Graphing Calculator
 		</title>
 	</head>
 	<body>
-		<nav id="login-bar">
-			<h1>Login Bar</h1>
-			<button type="submit" action="/login" method="GET">
-				Login
-			</button>
-			<button type="submit" action="/register" method="GET">
-				Register
-			</button>
-		</nav>
-		<div id="graph">
-			<h1>Graph here</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<form class="form-inline navbar-nav navbar-right" action="/login">
+					<div class="form-group">
+						<input type="login" class="form-control" id="login" placeholder="Login">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" id="pwd" placeholder="Password">
+					</div>
+					<button type="submit" name="login" class="btn btn-default">Sign In</button>
+					<button type="button" name="register" class="btn btn-default" onclick="ShowURegistration();">Register</button>
+				</form>
+			</div>
 		</div>
-		<div id="function-input">
-			<h1>Input bar here</h1>
+	</div>
+
+<!--Modal window-->
+	<div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="modelUploadTitle"
+		 aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalTitle">Registration</h5>
+					<button type="button" class="close"  data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form class="form-check-input" action="/register" id="registerForm" name="registerForm">
+					<div class="row">
+						<div class="col-xs-6 col-sm-6 col-md-6">
+							<div class="form-group">
+								<input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-6 col-md-6">
+							<div class="form-group">
+								<input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<input type="text" name="email" id="email" class="form-control input-sm" placeholder="Login">
+					</div>
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 col-md-6">
+								<div class="form-group">
+									<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-6">
+								<div class="form-group">
+									<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+								</div>
+							</div>
+						</div>
+				</form>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" onclick="RegisterUser();" data-dismiss="modal">Register & Log in</button>
+				</div>
+			</div>
 		</div>
+	</div>
+
+
+	<!--		<nav id="login-bar">
+                <h1>Login Bar</h1>
+                <button type="submit" action="/login" method="GET">
+                    Login
+                </button>
+                <button type="submit" action="/register" method="GET">
+                    Register
+                </button>
+            </nav>
+            <div id="graph">
+                <h1>Graph here</h1>
+            </div>
+            <div id="function-input">
+                <h1>Input bar here</h1>
+            </div>
+    -->
 	</body>
 </html>
