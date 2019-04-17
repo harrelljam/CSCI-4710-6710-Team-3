@@ -4,25 +4,37 @@
 		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+		<script>		
+			//monitor input bar to ensure function is valid
+			$(document).ready(function(){
+				$("#func-text").change(function(){
+					console.log("function changed, verify again")
+				});
+			});
+		</script>
+		
 		<title>
 			Graphing Calculator
 		</title>
 	</head>
 	<body>
 		<nav id="login-bar">
-			<h1>Login Bar</h1>
-			<button type="submit" action="/login" method="GET">
-				Login
-			</button>
-			<button type="submit" action="/register" method="GET">
-				Register
-			</button>
+			<div id="button-block">
+				<a href="/login">
+					<button>Login</button>
+				</a>
+				<a href="/register">
+					<button>Register</button>
+				</a>
+			</div>
 		</nav>
 		<div id="graph">
 			<h1>Graph here</h1>
 		</div>
-		<div id="function-input">
-			<h1>Input bar here</h1>
-		</div>
+		<form name="function" id="function-input" method="POST" action="/verify">
+			F(X)=<input name="func-text" id="func-text" type="text" placeholder="X"></input>
+			<button name="func-run" type="submit">Run</button>
+		</form>
 	</body>
 </html>
