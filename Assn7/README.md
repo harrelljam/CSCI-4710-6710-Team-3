@@ -20,6 +20,13 @@ firstName varchar(20),
 lastName varchar(20),
 pwd varchar(20));
 
+CREATE TABLE history (
+UserId VARCHAR (20),
+Function VARCHAR2 (30),
+CurrentDate DATE DEFAULT GETDATE(),
+ PRIMARY KEY (UserId)
+);
+
 
 
 python:
