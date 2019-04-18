@@ -8,31 +8,51 @@
 		<script type="text/javascript">
             //parse a function and determine if it is valid
             function valid(func){
-                let func2 = func;
                 var tokens = new Array();
                 //regex the function into tokens
                 var tokenmatch = /[0-9]+|X|[\^\+\-\/\*]{1}/g;
+                var symbols = /[0-9+\-\/*^X]/;
                 //see if anything doesn't match
-                for(let character in func2){
-                    console.log("offending character: ",character);
-                    if(!tokenmatch.test(character)){
+                for(var i=0; i<func.length; i++){
+                    if(!symbols.test(func[i])){
                         return false;
                     }
                 }
-                /*func.match(tokenmatch).forEach((token)=>{
+                func.match(tokenmatch).forEach((token)=>{
                     tokens.push(token);
-                });*/
+                });
                 console.log(tokens);
-                //we need to first set the function to postfix
-                //if at any point there isn't a rule, then the
-                //function is invalid
-
+                //we can tell that this is a valid function if every
+                //operator is between 2 non-operator tokens
+                //and it begins and ends with a non-operator token
+                var shouldBeOperator = false;
+                while(tokens.length>0){
+                    switch(tokens.pop()){
+                        case '+':
+                        case '-':
+                        case '*':
+                        case '/':
+                        case '^':
+                            if(!shouldBeOperator){
+                                return false;
+                            }
+                            break;
+                        default:
+                            if(shouldBeOperator){
+                                return false;
+                            }
+                    }
+                    shouldBeOperator = !shouldBeOperator;
+                }
                 return true;
             }
 
 			//monitor input bar to ensure function is valid
 			$(document).ready(function(){
-				$("#func-text").keydown(function () {
+			    $("#func-text").keydown(function(){
+                    return !(window.event && window.event.keyCode == 13);
+                });
+				$("#func-text").keyup(function () {
 				    var func = $("#func-text").val();
 
 				    if(valid(func)){

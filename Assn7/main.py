@@ -11,14 +11,13 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/verify", methods=['POST'])
 # verify a string function is actually computable
 def verify():
     funcstring = request.form['func-text']
     funcrun = request.form['func-run']
     # determine validity of the function
     print("Got a function {}".format(funcstring))
-    return render_template("index.html", verified=True)
+    return True
 
 
 @app.route("/run", methods=['POST'])
