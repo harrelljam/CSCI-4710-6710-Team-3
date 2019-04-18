@@ -11,22 +11,14 @@ def index():
     return render_template("index.html")
 
 
-# verify a string function is actually computable
-def verify():
-    funcstring = request.form['func-text']
-    funcrun = request.form['func-run']
-    # determine validity of the function
-    print("Got a function {}".format(funcstring))
-    return True
-
-
 @app.route("/run", methods=['POST'])
 # parse and compute the function, storing results in the session
 # as well as the users history table
 def run():
     # demo function f(x) = x, store 100 datapoints
-    demo = {'func': 'X', 'data': [i for i in numpy.linspace(-10, 10, 100, endpoint=True)]}
-    session['results'] = demo
+    X_values = {'func': 'X', 'data': [i for i in numpy.linspace(-10, 10, 100, endpoint=True)]}
+    Y_values = X_values
+    session['results'] = Y_values
     print(session['results']['data'])
     return render_template("index.html", function=session['results'])
 
