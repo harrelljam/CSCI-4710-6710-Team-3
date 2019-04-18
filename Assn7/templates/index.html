@@ -7,6 +7,36 @@
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 		<script type="text/javascript">
             //parse a function and determine if it is valid
+            function ShowURegistration() {
+                $('#modalRegister').modal('show');
+            }
+            function RegisterUser()
+            {
+
+            }
+            function CheckPasswords()
+            {
+                if (document.getElementById('passwordR').value != document.getElementById('password_confirmation').value)
+                {
+                    document.getElementById('message_pwd').style.color = 'red';
+                    document.getElementById('message_pwd').innerHTML = 'Passwords do not match';
+                    document.getElementById('register_btn').disabled = true;
+
+                }
+                else
+                {
+                    document.getElementById('register_btn').disabled = false;
+                    document.getElementById('message_pwd').innerHTML = '';
+                }
+            }
+
+            function form_submit()
+            {
+                
+                document.getElementById("registerForm").submit();
+            }
+
+
             function valid(func){
                 var tokens = new Array();
                 //regex the function into tokens
@@ -64,6 +94,8 @@
                     return !(window.event && window.event.keyCode == 13);
                 })
 			});
+
+
 		</script>
 		
 		<title>
@@ -71,16 +103,33 @@
 		</title>
 	</head>
 	<body>
-		<nav id="login-bar">
-			<div id="button-block">
-				<a href="/login">
-					<button>Login</button>
-				</a>
-				<a href="/register">
-					<button>Register</button>
-				</a>
-			</div>
-		</nav>
+		  <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {% if not userInSession %}
+                <form class="form-inline navbar-nav navbar-right" action="/login" method="POST">
+                    <div class="form-group">
+                        <input type="login"  name="login" class="form-control" id="login" placeholder="Login">
+                    </div>
+                    <div class="form-group">
+                        <input type="password"  name="password" class="form-control" id="pwd" placeholder="Password">
+                    </div>
+                    <button type="submit" name="log" class="btn btn-default">Sign In</button>
+                    <button type="button" name="register" class="btn btn-default" onclick="ShowURegistration();">Register</button>
+                </form>
+                    {% if wrongCredentials %}
+                    <br>
+                        <span class="navbar-nav navbar-right" id='message_credentials'> Wrong Credential </span>
+                    {%endif%}
+                {%else%}
+                    <div>
+                        <span id='message_uname' style="float:right">Hello, {{getUserName}}</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
 		<div id="graph">
 			<h1>Graph here</h1>
 		</div>
@@ -88,5 +137,59 @@
 			F(X)=<input name="func-text" id="func-text" type="text" placeholder="X"></input>
 			<button type="submit" name="func-run" class="disabled">Run</button>
 		</form>
+
+        <!--Modal window-->
+    <div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="modelUploadTitle"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Registration</h5>
+                    <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-input" action="/register" method="POST" id="registerForm" name="registerForm">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="loginR" id="loginR" required class="form-control input-sm" placeholder="Login">
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="password" name="passwordR" id="passwordR" onkeyup="CheckPasswords();" class="form-control input-sm" required placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="password" name="password_confirmation" id="password_confirmation" onkeyup="CheckPasswords();" required class="form-control input-sm" placeholder="Confirm Password">
+                                </div>
+                            </div>
+                        </div>
+
+
+                <span id='message_pwd'></span>
+                
+                    <button type="button" id ="register_btn" class="btn btn-default" onclick="form_submit();" data-dismiss="modal">Register & Log in</button>
+                
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+
 	</body>
 </html>
