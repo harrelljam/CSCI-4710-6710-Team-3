@@ -9,8 +9,7 @@ app.secret_key = 'dev'
 
 @app.route("/")
 def index():
-    if 'userid' not in session:
-        userId = "id"
+    if 'userid' in session:
         return render_template("index.html", wrongCredentials=False, userInSession=True, getUserName=session['userid'])
     else:
         return render_template("index.html")
