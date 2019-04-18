@@ -1,4 +1,5 @@
 import os
+import re
 import numpy
 from flask import Flask, render_template, session, request
 import util
@@ -24,9 +25,16 @@ def userInSession():
 # as well as the users history table
 def run():
     # demo function f(x) = x, store 100 datapoints
-    X_values = {'func': 'X', 'data': [i for i in numpy.linspace(-10, 10, 100, endpoint=True)]}
-    Y_values = X_values
-    session['results'] = Y_values
+    X_values = [i for i in numpy.linspace(-10, 10, 100, endpoint=True)]
+    Y_values = []
+    for X in range(100):
+        func = request.form['func-text']
+        replaced = func.replace("X", str(X_values[X])).replace("^","**")
+        Y_values.append(eval(replaced))
+    session['results'] = {
+        'func':request.form['func-text'],
+        'data':Y_values
+    }
     print(session['results']['data'])
     return render_template("index.html", function=session['results'])
 

@@ -131,7 +131,11 @@
     </div>
 
 		<div id="graph">
+            {% if not function %}
 			<h1>Graph here</h1>
+            {% else %}
+            <h1>{{ function['func'] }}</h1>
+            {% endif %}
 		</div>
 		<form name="function" id="function-input" method="POST" action="/run">
 			F(X)=<input name="func-text" id="func-text" type="text" placeholder="X"></input>
