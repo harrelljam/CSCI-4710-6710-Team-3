@@ -1,0 +1,30 @@
+#login-bar {
+	text-align: center;
+	background: teal;
+	float: left;
+	width: 100%;
+}
+
+#login-bar span {
+	font-weight: bold;
+}
+
+#login-bar #button-block {
+	float: right;
+}
+
+#login-bar #button-block button {
+	height: 100%;
+}
+
+#graph {
+	width: 90%;
+	height: 400px;
+	border: black solid 1px;
+	margin: auto;
+}
+
+#function-input {
+	text-align: center;
+	width: 100%;
+}

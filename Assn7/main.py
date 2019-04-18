@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session, request
 
 app = Flask(__name__)
 app.secret_key = 'dev'
@@ -11,6 +11,10 @@ def index():
 @app.route("/verify",methods=['POST'])
 #verify a string function is actually computable
 def verify():
+	funcstring = request.form['func-text']
+	funcrun = request.form['func-run']
+	#determine validity of the function
+	print("Got a function {}".format(funcstring))
 	return render_template("index.html",verified=True)
 
 @app.route("/run",methods=['POST'])
