@@ -70,7 +70,7 @@
 			Graphing Calculator
 		</title>
 	</head>
-	<body>
+	<body style="background-color: #DDDDDD;">
 		<nav id="login-bar">
 			<div id="button-block">
 				<a href="/login">
@@ -81,12 +81,62 @@
 				</a>
 			</div>
 		</nav>
-		<div id="graph">
-			<h1>Graph here</h1>
-		</div>
-		<form name="function" id="function-input" method="POST" action="/run">
-			F(X)=<input name="func-text" id="func-text" type="text" placeholder="X"></input>
-			<button type="submit" name="func-run" class="disabled">Run</button>
-		</form>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript">
+            google.load('visualization', '1.1', {packages: ['line']});
+            google.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+
+              var data = new google.visualization.DataTable();
+              data.addColumn('number', 'X');
+              data.addColumn('number', 'Y');
+
+              var dat = [];
+
+              // for (var i=0; i<{{session['results']['data']}}.length; i++) {
+              for (var i=-10; i<11; i++) {
+                dat.push([i, {{session['results']['data']}}[i+10]]);
+              }
+
+              console.log(dat);
+
+              data.addRows(dat);
+
+              var options = {
+                chart: {
+                  title: 'Graph of Function',
+                  subtitle: 'F(X) = {{session["results"]["func"]}}'
+                },
+                legend: {position: 'none'},
+                chartArea: {left: 0, top: 0, width: 600, height: 450},
+                hAxis: {slantedText:true, slantedTextAngle:45}
+
+              };
+
+              var chart = new google.charts.Line(document.getElementById('linechart_material'));
+
+              chart.draw(data, options);
+            }
+          </script>
+
+          <div style="width: 90%; padding: 8px; margin: auto; background-color: #FFFFFF;">
+            <div style="float: left;">
+                <h1>Enter Function:</h1>
+
+                <form name="function" id="function-input" method="POST" action="/run">
+                    F(X)=<input name="func-text" id="func-text" type="text" placeholder="X">
+                    <button type="submit" name="func-run" class="disabled">Run</button>
+                </form>
+            </div>
+
+            <div id="linechart_material" style="float: right; width: 600px; height: 450px; border: 1px solid black;"></div>
+
+            <div style="clear: both;"></div>
+        </div>
+
+        {% if data %}
+        <h3> Graph of Equaiton {{ data.final_reading }}</h3>
+        {% endif %}
 	</body>
 </html>

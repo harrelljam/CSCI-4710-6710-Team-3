@@ -1,5 +1,6 @@
 import os
 import numpy
+from sympy import simplify
 from flask import Flask, render_template, session, request
 
 app = Flask(__name__)
@@ -25,9 +26,15 @@ def verify():
 # as well as the users history table
 def run():
     # demo function f(x) = x, store 100 datapoints
-    demo = {'func': 'X', 'data': [i for i in numpy.linspace(-10, 10, 100, endpoint=True)]}
+    # return request.form['func-text']
+    dat, i = [], -10
+    while i < 11:
+        dat.append(int(simplify(request.form['func-text'].replace('X', '({0})').format(i))))
+        i += 1
+    demo = {'func': request.form['func-text'], 'data': dat}
+    print(dat)
+    # demo = {'func': 'X', 'data': [i for i in numpy.linspace(-10, 10, 100, endpoint=True)]}
     session['results'] = demo
-    print(session['results']['data'])
     return render_template("index.html", function=session['results'])
 
 
