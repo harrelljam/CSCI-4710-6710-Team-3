@@ -1,4 +1,5 @@
 import os
+import re
 import numpy
 from flask import Flask, render_template, session, request
 import util
@@ -9,25 +10,14 @@ app.secret_key = 'dev'
 
 @app.route("/")
 def index():
-    if 'userid' not in session:
-        userId="id"
+    if 'userid' in session:
         return render_template("index.html", wrongCredentials=False, userInSession=True, getUserName=session['userid'])
     else:
         return render_template("index.html")
 
-def userInSession():
-    if 'userid' not in session:
-        return false
-    else:
-        return true
 
-# verify a string function is actually computable
-def verify():
-    funcstring = request.form['func-text']
-    funcrun = request.form['func-run']
-    # determine validity of the function
-    print("Got a function {}".format(funcstring))
-    return True
+def userInSession():
+    return 'userid' in session
 
 
 @app.route("/run", methods=['POST'])
@@ -35,8 +25,16 @@ def verify():
 # as well as the users history table
 def run():
     # demo function f(x) = x, store 100 datapoints
-    demo = {'func': 'X', 'data': [i for i in numpy.linspace(-10, 10, 100, endpoint=True)]}
-    session['results'] = demo
+    X_values = [i for i in numpy.linspace(-10, 10, 100, endpoint=True)]
+    Y_values = []
+    for X in range(100):
+        func = request.form['func-text']
+        replaced = func.replace("X", str(X_values[X])).replace("^","**")
+        Y_values.append(eval(replaced))
+    session['results'] = {
+        'func':request.form['func-text'],
+        'data':Y_values
+    }
     print(session['results']['data'])
     return render_template("index.html", function=session['results'])
 
@@ -61,13 +59,13 @@ def loginF():
         return render_template("index.html", wrongCredentials=False, userInSession=True, getUserName=session['userid'])
 
 
-
 @app.route("/register", methods=['POST'])
 def registerF():
     print("register started")
-    print("login"+request.form['loginR'])
+    print("login" + request.form['loginR'])
     if not (util.correctCredentials(request.form['loginR'], request.form['passwordR'])):
-        util.insertUser(request.form['loginR'], request.form['passwordR'],request.form['first_name'], request.form['last_name'])
+        util.insertUser(request.form['loginR'], request.form['passwordR'], request.form['first_name'],
+                        request.form['last_name'])
         return render_template("index.html", UserExist=False)
     else:
         return render_template("index.html", UserExist=False)
