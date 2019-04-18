@@ -102,11 +102,11 @@
             google.load('visualization', '1.1', {packages: ['line']});
             google.setOnLoadCallback(drawChart);
             function drawChart() {
+            {%if session['results'] %}
               var data = new google.visualization.DataTable();
               data.addColumn('number', 'X');
               data.addColumn('number', 'Y');
               var dat = [];
-              // for (var i=0; i<{{session['results']['data']}}.length; i++) {
               for (var i=0; i<100; i++) {
                 dat.push([(i/5)-10, {{session['results']['data']}}[i]]);
               }
@@ -123,6 +123,7 @@
               };
               var chart = new google.charts.Line(document.getElementById('linechart_material'));
               chart.draw(data, options);
+             {%endif%}
             }
         </script>
 		<title>
