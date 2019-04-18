@@ -5,12 +5,44 @@
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-		<script>		
+		<script type="text/javascript">
+            //parse a function and determine if it is valid
+            function valid(func){
+                let func2 = func;
+                var tokens = new Array();
+                //regex the function into tokens
+                var tokenmatch = /[0-9]+|X|[\^\+\-\/\*]{1}/g;
+                //see if anything doesn't match
+                for(let character in func2){
+                    console.log("offending character: ",character);
+                    if(!tokenmatch.test(character)){
+                        return false;
+                    }
+                }
+                /*func.match(tokenmatch).forEach((token)=>{
+                    tokens.push(token);
+                });*/
+                console.log(tokens);
+                //we need to first set the function to postfix
+                //if at any point there isn't a rule, then the
+                //function is invalid
+
+                return true;
+            }
+
 			//monitor input bar to ensure function is valid
 			$(document).ready(function(){
-				$("#func-text").change(function(){
-					console.log("function changed, verify again")
-				});
+				$("#func-text").keydown(function () {
+				    var func = $("#func-text").val();
+
+				    if(valid(func)){
+				        $("#func-text").css("color","green");
+                    } else {
+				        $("#func-text").css("color","red");
+                    }
+
+                    return !(window.event && window.event.keyCode == 13);
+                })
 			});
 		</script>
 		
@@ -32,9 +64,9 @@
 		<div id="graph">
 			<h1>Graph here</h1>
 		</div>
-		<form name="function" id="function-input" method="POST" action="/verify">
+		<form name="function" id="function-input" method="POST" action="/run">
 			F(X)=<input name="func-text" id="func-text" type="text" placeholder="X"></input>
-			<button name="func-run" type="submit">Run</button>
+			<button type="submit" name="func-run" class="disabled">Run</button>
 		</form>
 	</body>
 </html>
