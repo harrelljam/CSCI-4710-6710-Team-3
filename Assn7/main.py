@@ -1,6 +1,7 @@
 import os
 import numpy
 from flask import Flask, render_template, session, request
+import util
 
 app = Flask(__name__)
 app.secret_key = 'dev'
@@ -8,8 +9,17 @@ app.secret_key = 'dev'
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    if 'userid' not in session:
+        userId="id"
+        return render_template("index.html", wrongCredentials=False, userInSession=True, getUserName=session['userid'])
+    else:
+        return render_template("index.html")
 
+def userInSession():
+    if 'userid' not in session:
+        return false
+    else:
+        return true
 
 @app.route("/run", methods=['POST'])
 # parse and compute the function, storing results in the session
@@ -33,15 +43,26 @@ def getHistory():
     return render_template("index.html", function=session['results'])
 
 
-@app.route("/login", methods=['GET', 'POST'])
-# login
-def login():
-    return render_template("login.html")
+@app.route("/login", methods=['POST'])
+def loginF():
+    print("logis started")
+    if not (util.correctCredentials(request.form['login'], request.form['password'])):
+        session.clear()
+        return render_template("index.html", wrongCredentials=True)
+    else:
+        return render_template("index.html", wrongCredentials=False, userInSession=True, getUserName=session['userid'])
 
 
-@app.route("/register", methods=['GET', 'POST'])
-def register():
-    return render_template("register.html")
+
+@app.route("/register", methods=['POST'])
+def registerF():
+    print("register started")
+    print("login"+request.form['loginR'])
+    if not (util.correctCredentials(request.form['loginR'], request.form['passwordR'])):
+        util.insertUser(request.form['loginR'], request.form['passwordR'],request.form['first_name'], request.form['last_name'])
+        return render_template("index.html", UserExist=False)
+    else:
+        return render_template("index.html", UserExist=False)
 
 
 # run application
