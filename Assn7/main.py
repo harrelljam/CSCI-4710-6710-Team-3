@@ -29,11 +29,12 @@ def run():
     Y_values = []
     for X in range(100):
         func = request.form['func-text']
-        replaced = func.replace("X", str(X_values[X])).replace("^","**")
+        replaced = func.replace("X", "("+str(X_values[X])+")").replace("^","**")
         Y_values.append(eval(replaced))
     session['results'] = {
-        'func':request.form['func-text'],
-        'data':Y_values
+        'func': request.form['func-text'],
+        'x_val': X_values,
+        'data': Y_values
     }
     print(session['results']['data'])
     return render_template("index.html", function=session['results'])
