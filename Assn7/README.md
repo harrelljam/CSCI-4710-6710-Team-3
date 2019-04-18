@@ -3,6 +3,28 @@ Folder for assignment 7
 
 How to run:
 
+
+postgres:
+
+sudo -u postgres psql
+create database tempdb;
+create user tmp with encrypted password 'tmp';
+grant all privileges on database tempdb to tmp;
+\c tempdb
+GRANT ALL PRIVILEGES ON sequence ulist_usernumber_seq TO tmp;
+
+CREATE TABLE ulist (
+usernumber serial PRIMARY KEY,
+userid varchar(20),
+firstName varchar(20),
+lastName varchar(20),
+pwd varchar(20));
+
+
+
+python:
+
+
 cd IdeaProjects/CSCI-4710-6710-Team-3/Assn7
 
 mkvirtualenv -p python2.7 dev
