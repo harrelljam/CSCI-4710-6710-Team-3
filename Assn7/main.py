@@ -33,8 +33,6 @@ def run():
         Y_values.append(eval(replaced))
     session['results'] = {
         'func': request.form['func-text'],
-        'x_val': X_values,
-        'data': Y_values
     }
     print(session['results']['data'])
     return render_template("index.html", function=session['results'])
@@ -52,7 +50,7 @@ def getHistory():
 
 @app.route("/login", methods=['POST'])
 def loginF():
-    print("logis started")
+    print("login started")
     if not (util.correctCredentials(request.form['login'], request.form['password'])):
         session.clear()
         return render_template("index.html", wrongCredentials=True)
