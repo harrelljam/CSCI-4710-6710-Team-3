@@ -10,16 +10,15 @@ app.secret_key = 'dev'
 @app.route("/")
 def index():
     if 'userid' not in session:
-        userId="id"
+        userId = "id"
         return render_template("index.html", wrongCredentials=False, userInSession=True, getUserName=session['userid'])
     else:
         return render_template("index.html")
 
+
 def userInSession():
-    if 'userid' not in session:
-        return false
-    else:
-        return true
+    return 'userid' in session
+
 
 @app.route("/run", methods=['POST'])
 # parse and compute the function, storing results in the session
@@ -53,13 +52,13 @@ def loginF():
         return render_template("index.html", wrongCredentials=False, userInSession=True, getUserName=session['userid'])
 
 
-
 @app.route("/register", methods=['POST'])
 def registerF():
     print("register started")
-    print("login"+request.form['loginR'])
+    print("login" + request.form['loginR'])
     if not (util.correctCredentials(request.form['loginR'], request.form['passwordR'])):
-        util.insertUser(request.form['loginR'], request.form['passwordR'],request.form['first_name'], request.form['last_name'])
+        util.insertUser(request.form['loginR'], request.form['passwordR'], request.form['first_name'],
+                        request.form['last_name'])
         return render_template("index.html", UserExist=False)
     else:
         return render_template("index.html", UserExist=False)
